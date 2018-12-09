@@ -9,12 +9,12 @@ module test_bench(clk,reset,counter);
 	end
 	always @(posedge clk)
 	begin
-	if(data == 64'b100000)
-		data = data - data;
-	if(reset)
-	 data = 64'b0;
+		if(data == 64'b100000)
+			data = 0;
+		if(reset)
+		 	data = 0;
 		else
-	 data = data + 64'b1;
+		 	data = data + 64'b1;
 	end 
 
 	

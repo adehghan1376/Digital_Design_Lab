@@ -12,8 +12,9 @@ wire [0:64]dataC;
 //wire reset;
 wire [0:64]counter;
 
-
+	//RegBank(a,b,c,dataC,write,clk,dataA,dataB);
 	RegBank rb(a,b,c,dataC,1'b1,clk,dataA,dataB);
+	//test_bench(clk,reset,counter);
 	test_bench tb(clk,1'b0,counter);
 	assign c=counter;
 	assign a=c;
@@ -22,7 +23,7 @@ reg [0:5]cbefore;
 always
 begin
 	cnow=c;
-	#200
+	#100
 	cbefore=cnow;
 end
 /*
