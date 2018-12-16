@@ -1,5 +1,5 @@
 
-module PC_Class(clk,write,reset,out);
+module PC_Class(clk,write,wEnable,reset,out);
 	input clk;
 	input [64:0]write;
 	input reset;
@@ -11,7 +11,7 @@ module PC_Class(clk,write,reset,out);
 	begin
 		if(reset==1)
 			data=0;
-		else
+		else if (wEnable)
 			data=write;
 	end
 	

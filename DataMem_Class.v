@@ -8,7 +8,7 @@ module DataMem_Class(addressWrite,data2write,write,addressRead,out,clk);
 	input [0:5]addressRead;
 	output [64:0]out;
 	reg [64:0]data;
-	assign out=mem[addressRead];
+	assign out=()?mem[addressRead];
 
 	
 	
