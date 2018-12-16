@@ -13,23 +13,17 @@ module RegBank(a,b,c,dataC,write,clk,dataA,dataB);
 	reg[0:64] mem [0:32];	//the memory
 	
 	///// read A \\\\\\\
-	/*integer inta
-	always @( a )
-   		inta = a;*/
+	
 	assign dataA=mem[a];
 	///// ###### \\\\\\\
 
 	///// read B \\\\\\\
-	/*integer intb
-	always @( b )
-   		intb = b;*/
+	
 	assign dataB=mem[b];
 	///// ###### \\\\\\\
 
 	///// write C \\\\\\\
-	/*integer intc
-	always @( c )
-   		intc = c;*/
+
 
 	always @(posedge clk)
 	begin
