@@ -1,23 +1,27 @@
-
-module PC_Class(clk,write,wEnable,reset,out);
+module PC_Class(clk,write,wEnable,reset,out);   //DONE
 	input clk;
-	input [64:0]write;
+	input [63:0]write;
 	input reset;
+	input wEnable;
 	
-	output [64:0]out;
-	reg [64:0]data;
+	output [63:0]out;
+	reg [63:0]data;
 	
 	always@(posedge clk)
 	begin
-		if(reset==1)
-			data=0;
+		if(reset==1'b1)
+			data=1'b0;
 		else if (wEnable)
 			data=write;
 	end
 	
 	assign out=data;
 	
-	
+	initial
+	begin
+	#50
+	data=64'b0;
+	end
 	
 	
 endmodule

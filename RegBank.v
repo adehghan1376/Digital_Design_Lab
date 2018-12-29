@@ -1,16 +1,16 @@
-module RegBank(a,b,c,dataC,write,clk,dataA,dataB);
+module RegBank(a,b,c,dataC,write,clk,dataA,dataB);    //DONE
 
-	input [0:5]a;
-	input [0:5]b;
-	input [0:5]c;
+	input [0:4]a;
+	input [0:4]b;
+	input [0:4]c;
 	
-	input [0:64]dataC;
+	input [0:63]dataC;
 	input write;
 	input clk;
-	output [0:64]dataA;
-	output [0:64]dataB;
+	output [0:63]dataA;
+	output [0:63]dataB;
 	
-	reg[0:64] mem [0:32];	//the memory
+	reg[0:63] mem [0:31];	//the memory
 	
 	///// read A \\\\\\\
 	
@@ -31,5 +31,15 @@ module RegBank(a,b,c,dataC,write,clk,dataA,dataB);
 	        mem[c] = dataC;
 	end
 	///// ####### \\\\\\\
+	
+	
+	
+		integer k;
+
+	initial 
+	begin
+	for (k = 0; k< 32;k = k + 1)
+		mem[k] = 0;
+	end
 endmodule
 

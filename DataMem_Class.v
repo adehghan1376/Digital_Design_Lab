@@ -1,21 +1,29 @@
-module DataMem_Class(addressWrite,data2write,write,addressRead,out,clk);
+module DataMem_Class(Address,WriteData,MemWrite,MemRead,ReadData,clk);   //DONE
 	
-	reg [64:0]mem[0:32];	//the memory
-	input [0:5]addressWrite;
+	reg [63:0]mem[0:31];	//the memory
+	input [63:0]Address;
 	input clk;
-	input write;
-	input data2write;
-	input [0:5]addressRead;
-	output [64:0]out;
-	reg [64:0]data;
-	assign out=()?mem[addressRead];
-
-	
+	input MemWrite;
+	input WriteData;
+	input MemRead;
+	output [63:0]ReadData;
+	integer k;
+	assign ReadData=((MemRead)? mem[Address]: 0 );
+initial 
+begin
+for (k = 0; k< 32;k = k + 1)
+mem[k] = 0;
+mem[0] = 5;
+mem[1] = 5;
+mem[2] = 5;
+mem[3] = 5;
+mem[4] = 5;
+	end
 	
 	always @(posedge clk)
 	begin
-	      if(write == 1'b1)
-	        mem[addressWrite] = data2write;
+	      if(MemWrite == 1'b1)
+	        mem[Address] = WriteData;
 	end
 
 endmodule

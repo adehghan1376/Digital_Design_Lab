@@ -1,4 +1,4 @@
-module OS(clk);
+module OS(clk);   //DONE
 output reg clk;
 always
 begin
