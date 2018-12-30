@@ -19,9 +19,13 @@ module PC_Class(clk,write,wEnable,reset,out);   //DONE
 	
 	initial
 	begin
-	#50
+	#150
 	data=64'b0;
+	//write=64'b0;
 	end
-	
+	always@(*)
+	begin
+		$display("\nPC:\nwrite = %b\nout = %b\n ",write,out);
+	end
 	
 endmodule

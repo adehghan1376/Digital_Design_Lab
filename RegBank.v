@@ -39,7 +39,7 @@ module RegBank(a,b,c,dataC,write,clk,dataA,dataB);    //DONE
 	initial 
 	begin
 	for (k = 0; k< 32;k = k + 1)
-		mem[k] = 0;
+		mem[k] = 64'b0;
 	end
 endmodule
 

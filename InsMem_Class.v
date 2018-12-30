@@ -15,5 +15,8 @@ module InsMem_Class(address,out);   //DONE
 	mem[3] = 32'hF80010A6;
 	end
 	////////
-	
+	always@(address)
+	begin
+		$display("\nInsMem:\nAddress = %b\nout = %b\n ",address,out);
+	end
 endmodule

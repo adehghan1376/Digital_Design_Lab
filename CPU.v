@@ -1,6 +1,6 @@
 module CPU();
 wire clk;
-wire pc_write;
+wire [63:0]pc_write;
 wire pc_wEnable;
 reg pc_reset;
 wire [63:0]pc_out;
@@ -33,6 +33,10 @@ control controller(instruction_mem_out[31:21],Reg2Loc,ALUSrc,MemtoReg,RegWrite,M
 
 OS osilator(clk);
 
+initial
+begin
+	//pc_write=64'b0;
+end
 PC_Class PC(clk,pc_write,1'b1,pc_reset,pc_out);
 
 adder_64bit PC_Adder(64'd4,pc_out,pc_adder_out);
@@ -83,7 +87,7 @@ mult Mult_DataMemory(ReadData,ALU_Result,MemtoReg,WriteData); defparam Mult_Data
 /////////Shift left 2   START
 //Sign_Extende_out -> {2'B00,Sign_Extende_out}[63:0]
 wire [63:0] Sign_Extende_out_shifted;
-assign Sign_Extende_out_shifted={Sign_Extende_out[63:2],2'B00};
+assign Sign_Extende_out_shifted={Sign_Extende_out[61:0],2'B00};
 /////////Shift left 2   END
 
 //module adder_nbit(num1,num2,out); parameter n=64;
@@ -93,7 +97,10 @@ adder_nbit Shift_Adder (pc_out,Sign_Extende_out_shifted,ShiftAdderResult); defpa
 //mult(in1,in2,selector,out)
 
 mult Mult_Branch(pc_adder_out,ShiftAdderResult,(zero & Branch),pc_write); defparam Mult_DataMemory.n=64;
-
+always@(pc_adder_out,ShiftAdderResult)
+	begin
+		$display("\nMult_Branch:\npc_adder_out = %b\nShiftAdderResult = %b  \n(zero & Branch)=%b \n",pc_adder_out,ShiftAdderResult,zero & Branch);
+	end
 
 
 
